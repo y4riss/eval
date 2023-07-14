@@ -75,7 +75,7 @@ int parse_factor(char **expression)
 
 
         if(op == '*') left = left * right;
-        else if(op == '%') left = left * right;
+        else if(op == '%') left = left % right;
         else  {
 
             if (right == 0)
