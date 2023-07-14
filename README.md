@@ -2,6 +2,7 @@ This is a little project that evaluates an arithmetic expression and produces th
 
 I made this project as a manner of practice after reading about `recursive descent parsing` in [craftinginterpreters](https://craftinginterpreters.com/) , which is a very good resource for those interested in compilers.
 
+
 # Compiling
 
 Straight forward as it is , just type make :)
@@ -18,4 +19,15 @@ eval created
 
 ```
 ./eval
+
+Welcome to eval, a simple arithmetic expression evaluator !
+If you want to quit, type exit.
+
+> 1 + 1
+2
+> (8 - 2) * ((9 + 3) - 7) / 5
+6
+> exit
 ```
+
+

@@ -26,7 +26,10 @@ int parse_primary(char **expression)
             fprintf(stderr,"unmatching parenthesis");
             exit(77);
         }
+        while(**expression == ' ') advance(expression); // skip whitespaces
         advance(expression);
+        while(**expression == ' ') advance(expression); // skip whitespaces
+
         return e;
     }
     while (isnum(**expression))
@@ -64,6 +67,7 @@ int parse_factor(char **expression)
     left = parse_unary(expression);
 
 
+    while(**expression == ' ') advance(expression); // skip whitespaces
     while(**expression == '*' || **expression == '/' || **expression == '%')
     {
         char    op;
@@ -98,6 +102,7 @@ int parse_term(char **expression)
     left = parse_factor(expression);
 
 
+    while(**expression == ' ') advance(expression); // skip whitespaces
     while(**expression == '+' || **expression == '-')
     {
         char    op;
