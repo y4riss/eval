@@ -75,7 +75,7 @@ double parse_factor(char **expression)
     left = parse_unary(expression);
 
 
-    while(**expression == '*' || **expression == '/')
+    while(**expression == '*' || **expression == '/' || **expression == '%')
     {
         char    op;
         double  right;
@@ -86,7 +86,16 @@ double parse_factor(char **expression)
 
 
         if(op == '*') left = left * right;
-        else          left = left / right;
+        else if(op == '%') left = left * right;
+        else  {
+
+            if (right == 0)
+            {
+                fprintf(stderr,"error, division by zero");
+                exit(69);
+            }
+            left = left / right;
+        }
     }
     return left;
 
