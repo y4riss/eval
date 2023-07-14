@@ -1,6 +1,16 @@
 #include "eval.h"
 #include "helpers.h"
 
+void check_form(char c)
+{
+    if(!(isnum(c) || c == '(' || c == ')' || c == '+'
+    || c == '-' || c == '*' || c == '%' || c == '/' || c == '\n'))
+    {
+        
+        fprintf(stderr, "Invalid expression format\n");
+        exit(55);
+    }
+}
 
 int parse_primary(char **expression)
 {
@@ -16,6 +26,8 @@ int parse_primary(char **expression)
 
     nb_start = *expression;
 
+
+
     if (**expression == '(')
     {
         advance(expression);
@@ -23,10 +35,9 @@ int parse_primary(char **expression)
 
         if (**expression != ')')
         {
-            fprintf(stderr,"unmatching parenthesis");
+            fprintf(stderr,"unmatching parenthesis\n");
             exit(77);
         }
-        while(**expression == ' ') advance(expression); // skip whitespaces
         advance(expression);
         while(**expression == ' ') advance(expression); // skip whitespaces
 
@@ -37,9 +48,11 @@ int parse_primary(char **expression)
 
     nb_end = *expression;
 
+    // check if expression has a correct form
 
     while(**expression == ' ') advance(expression);
 
+    check_form(**expression);
     return str_to_int(nb_start,nb_end);
 }
 
@@ -84,7 +97,7 @@ int parse_factor(char **expression)
 
             if (right == 0)
             {
-                fprintf(stderr,"error, division by zero");
+                fprintf(stderr,"error, division by zero\n");
                 exit(69);
             }
             left = left / right;
