@@ -8,7 +8,8 @@ int isnum(char c)
 
 void advance(char **expression)
 {
-   (*expression)++;
+    if (*expression)
+        (*expression)++;
 }
 
 
@@ -18,12 +19,27 @@ double parse_primary(char **expression)
     char *nb_start;
     char *nb_end;
 
+    double e;
+
 
 
     while(**expression == ' ') advance(expression); // skip whitespaces
 
     nb_start = *expression;
 
+    if (**expression == '(')
+    {
+        advance(expression);
+        e = parse_term(expression);
+
+        if (**expression != ')')
+        {
+            fprintf(stderr,"unmatching parenthesis");
+            exit(77);
+        }
+        advance(expression);
+        return e;
+    }
     while (isnum(**expression))
         advance(expression);
 
