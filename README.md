@@ -30,4 +30,20 @@ If you want to quit, type exit.
 > exit
 ```
 
+# Theory
 
+for the nerds out there , here is how the parser works :
+First, we need a grammar, i came up with this one :
+
+```
+expression -> term
+term       -> factor ( '+' | '-' factor )*
+factor     -> unary  ( '*' | '/' | '%' unary )*
+unary      -> '-'* primary
+primary    -> NUMBER
+```
+
+Now for this parser, a correct arithmetic expression is one that can be derived from this grammar.
+The implementation is replacing each production rule with a function.
+
+For example , `expression -> term` becomes `function expression() {return term() }` (pseudo code)
