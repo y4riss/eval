@@ -1,14 +1,15 @@
 #include "eval.h"
 #include "helpers.h"
 
+
+
 void check_form(char c)
 {
     if(!(isnum(c) || c == '(' || c == ')' || c == '+'
     || c == '-' || c == '*' || c == '%' || c == '/' || c == '\n'))
     {
         
-        fprintf(stderr, "Invalid expression format\n");
-        exit(55);
+        error = 2;
     }
 }
 
@@ -35,8 +36,7 @@ long long int parse_primary(char **expression)
 
         if (**expression != ')')
         {
-            fprintf(stderr,"invalid parenthesis\n");
-            exit(77);
+            error = 2;
         }
         advance(expression);
         while(**expression == ' ') advance(expression); // skip whitespaces
@@ -97,8 +97,8 @@ long long int parse_factor(char **expression)
 
             if (right == 0)
             {
-                fprintf(stderr,"error, division by zero\n");
-                exit(69);
+                error = 1;
+                return 0;
             }
             left = left / right;
         }

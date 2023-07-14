@@ -12,6 +12,5 @@ long long int parse_unary(char **expression);
 long long int parse_factor(char **expression);
 long long int parse_term(char **expression);
 
-
-
+extern int error;
 #endif // EVAL_H

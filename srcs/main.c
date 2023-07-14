@@ -4,10 +4,14 @@
 
 #define BUFF_SIZE 126
 
+int error;
+
 int main(void)
 {
     
     char buff[BUFF_SIZE];
+    long long int output;
+
 
     printf("\nWelcome to eval, a simple arithmetic expression evaluator !\n");
     printf("If you want to quit, type exit.\n\n");
@@ -19,7 +23,20 @@ int main(void)
         {
             return 0;
         }
-        printf("%lld\n",eval_expr(buff));
+        error = 0;
+        output = eval_expr(buff);
+        if (error != 0)
+        {
+            switch(error)
+            {
+                case 1 :
+                    printf("[Error] : division by zero.\n");
+                    break;
+                case 2 :
+                    printf("[Error] : invalid format.\n");
+            }
+        }
+        else printf("%lld\n",output);
     }
     return 0;
 }
