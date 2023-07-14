@@ -3,7 +3,7 @@
 
 int isnum(char c)
 {
-    return '0' <= c <= '9';
+    return '0' <= c && c <= '9';
 }
 
 void advance(char **expression)
@@ -16,14 +16,23 @@ double parse_primary(char **expression)
 {
 
     char *nb_start;
+    char *nb_end;
+
+
+
+    while(**expression == ' ') advance(expression); // skip whitespaces
 
     nb_start = *expression;
 
-    if (isnum(**expression))
+    while (isnum(**expression))
         advance(expression);
 
+    nb_end = *expression;
 
-    return strtod(nb_start,expression);
+
+    while(**expression == ' ') advance(expression);
+
+    return strtod(nb_start,&nb_end);
 }
 
 double parse_unary(char **expression)
@@ -32,6 +41,7 @@ double parse_unary(char **expression)
 
     x = 1;
 
+    while(**expression == ' ') advance(expression); // skip whitespaces
     while(**expression == '-')
     {
         x = x * (-1);
