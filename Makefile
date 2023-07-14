@@ -6,5 +6,5 @@ CC := gcc
 TARGET := eval
 
 all :
-	@$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) -I $(INCLUDES)
+	@$(CC) $(SRCS) -o $(TARGET) -I $(INCLUDES)
 	@echo eval created

@@ -19,7 +19,7 @@ int main(void)
         {
             return 0;
         }
-        printf("%d\n",eval_expr(buff));
+        printf("%lld\n",eval_expr(buff));
     }
     return 0;
 }

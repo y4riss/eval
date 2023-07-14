@@ -12,13 +12,13 @@ void check_form(char c)
     }
 }
 
-int parse_primary(char **expression)
+long long int parse_primary(char **expression)
 {
 
     char *nb_start;
     char *nb_end;
 
-    int e;
+    long long int e;
 
 
 
@@ -56,9 +56,9 @@ int parse_primary(char **expression)
     return str_to_int(nb_start,nb_end);
 }
 
-int parse_unary(char **expression)
+long long int parse_unary(char **expression)
 {
-    int x;
+    long long int x;
 
     x = 1;
 
@@ -73,9 +73,9 @@ int parse_unary(char **expression)
     return x * parse_primary(expression);
 }
 
-int parse_factor(char **expression)
+long long int parse_factor(char **expression)
 {
-    int left;
+    long long int left;
 
     left = parse_unary(expression);
 
@@ -84,7 +84,7 @@ int parse_factor(char **expression)
     while(**expression == '*' || **expression == '/' || **expression == '%')
     {
         char    op;
-        int  right;
+        long long int  right;
 
         op = **expression;
         advance(expression);
@@ -108,9 +108,9 @@ int parse_factor(char **expression)
 
 }
 
-int parse_term(char **expression)
+long long int parse_term(char **expression)
 {
-    int  left;
+    long long int  left;
     
     left = parse_factor(expression);
 
@@ -119,7 +119,7 @@ int parse_term(char **expression)
     while(**expression == '+' || **expression == '-')
     {
         char    op;
-        int  right;
+        long long int  right;
 
         op = **expression;
 
@@ -135,7 +135,7 @@ int parse_term(char **expression)
 
 
 
-int eval_expr(char *expression)
+long long int eval_expr(char *expression)
 {
     return parse_term(&expression);
 }

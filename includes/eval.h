@@ -5,11 +5,12 @@
 #include <stdio.h>
 
 
-int eval_expr(char *string);
-int parse_primary(char **expression);
-int parse_unary(char **expression);
-int parse_factor(char **expression);
-int parse_term(char **expression);
+
+long long int eval_expr(char *string);
+long long int parse_primary(char **expression);
+long long int parse_unary(char **expression);
+long long int parse_factor(char **expression);
+long long int parse_term(char **expression);
 
 
 
