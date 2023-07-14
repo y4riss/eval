@@ -1,6 +1,6 @@
 
 INCLUDES := ./includes
-SRCS := ./srcs/main.c ./srcs/eval.c
+SRCS := ./srcs/main.c ./srcs/eval.c ./srcs/helpers.c
 CFLAGS := -Wall -Wextra -Werror
 CC := gcc
 TARGET := eval

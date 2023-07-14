@@ -1,25 +1,14 @@
-#include "utils.h"
+#include "eval.h"
+#include "helpers.h"
 
 
-int isnum(char c)
-{
-    return '0' <= c && c <= '9';
-}
-
-void advance(char **expression)
-{
-    if (*expression)
-        (*expression)++;
-}
-
-
-double parse_primary(char **expression)
+int parse_primary(char **expression)
 {
 
     char *nb_start;
     char *nb_end;
 
-    double e;
+    int e;
 
 
 
@@ -48,12 +37,12 @@ double parse_primary(char **expression)
 
     while(**expression == ' ') advance(expression);
 
-    return strtod(nb_start,&nb_end);
+    return str_to_int(nb_start,nb_end);
 }
 
-double parse_unary(char **expression)
+int parse_unary(char **expression)
 {
-    double x;
+    int x;
 
     x = 1;
 
@@ -68,9 +57,9 @@ double parse_unary(char **expression)
     return x * parse_primary(expression);
 }
 
-double parse_factor(char **expression)
+int parse_factor(char **expression)
 {
-    double left;
+    int left;
 
     left = parse_unary(expression);
 
@@ -78,7 +67,7 @@ double parse_factor(char **expression)
     while(**expression == '*' || **expression == '/' || **expression == '%')
     {
         char    op;
-        double  right;
+        int  right;
 
         op = **expression;
         advance(expression);
@@ -102,9 +91,9 @@ double parse_factor(char **expression)
 
 }
 
-double parse_term(char **expression)
+int parse_term(char **expression)
 {
-    double  left;
+    int  left;
     
     left = parse_factor(expression);
 
@@ -112,7 +101,7 @@ double parse_term(char **expression)
     while(**expression == '+' || **expression == '-')
     {
         char    op;
-        double  right;
+        int  right;
 
         op = **expression;
 
@@ -128,7 +117,7 @@ double parse_term(char **expression)
 
 
 
-double eval_expr(char *expression)
+int eval_expr(char *expression)
 {
     return parse_term(&expression);
 }
