@@ -35,7 +35,7 @@ int parse_primary(char **expression)
 
         if (**expression != ')')
         {
-            fprintf(stderr,"unmatching parenthesis\n");
+            fprintf(stderr,"invalid parenthesis\n");
             exit(77);
         }
         advance(expression);
