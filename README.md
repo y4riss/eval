@@ -10,7 +10,7 @@ Straight forward as it is , just type make :)
 make
 ```
 
-if everything is ok, the following message would appear :
+if everything is ok, the following message should appear :
 ```
 eval created
 ```
